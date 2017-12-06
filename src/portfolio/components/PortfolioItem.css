@@ -1,0 +1,32 @@
+.Portfolio-item {
+  font-size: 18px;
+  margin: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Portfolio-item-left {
+  max-width: 600px;
+}
+
+.Portfolio-label {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.Portfolio-technology {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.Portfolio-item p {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 700px) {
+  .Portfolio-item {
+    flex-wrap: wrap;
+  }
+}

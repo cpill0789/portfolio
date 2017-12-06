@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'reset-css';
 import './App.css';
 
-import Portfolio from './portfolio';
+import Portfolio from './portfolio/Portfolio';
 
 class App extends Component {
   render() {

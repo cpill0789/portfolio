@@ -9,10 +9,6 @@ body {
   box-sizing: border-box;
 }
 
-p {
-  font-size: 18px;
-}
-
 .App-header {
   background-color: #333;
   padding: 20px;
@@ -21,6 +17,7 @@ p {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .App-header div {
@@ -49,4 +46,5 @@ h3 {
   font-size:22px;
   font-weight: bold;
   text-align: center;
+  margin-bottom: 10px;
 }

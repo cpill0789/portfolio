@@ -1,0 +1,23 @@
+.SiteScreen {
+  position: relative;
+  max-width: 768px;
+}
+
+.SiteScreen-image {
+  width: 100%;
+  height: auto;
+}
+
+.SiteScreen-mask {
+  position: absolute;
+  left:0;
+  width:100%;
+  top:0;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+}
+
+.SiteScreen-mask:hover {
+  opacity: 0.75;
+}
