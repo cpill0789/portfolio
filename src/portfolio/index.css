@@ -1,0 +1,10 @@
+.Portfolio-messenger {
+  display:flex;
+  justify-content:space-around;
+}
+
+.Portfolio-messenger p {
+  max-width: 500px;
+  text-align: left;
+  padding: 10px;
+}
