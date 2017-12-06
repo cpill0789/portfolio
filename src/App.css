@@ -1,5 +1,6 @@
 body {
-  font-family: Helvetica;
+  font-family: "adobe-garamond-pro", serif;
+  line-height: 1.25;
 }
 
 *, *:before, *:after {
@@ -8,18 +9,44 @@ body {
   box-sizing: border-box;
 }
 
-.App {
-  text-align: center;
+p {
+  font-size: 18px;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #333;
   padding: 20px;
   color: white;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.App-header h1 {
-  font-size: 30px;
-  margin-bottom: .75em;
+.App-header div {
+  margin:10px;
+}
+
+.logos a {
+  padding: 5px;
+}
+
+h1, h2, h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 38px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: 300;
+}
+
+h3 {
+  font-size:22px;
+  font-weight: bold;
+  text-align: center;
 }
