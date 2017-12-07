@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import './PhoneFrame.css';
-
 import phone from '../assets/iphone8.png';
 
 class PhoneFrame extends PureComponent {
@@ -50,12 +50,18 @@ class PhoneFrame extends PureComponent {
           ref={this.bindVideoRef}
           onClick={this.playVideo}
           className="PhoneFrame-video"
+          poster={this.props.poster}
         >
-          <source src={this.props.src} />
+          <source src={this.props.src} type="video/mp4" />
         </video>
       </div>
     );
   }
 }
+
+PhoneFrame.propTypes = {
+  src: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+};
 
 export default PhoneFrame;

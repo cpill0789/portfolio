@@ -19,6 +19,10 @@
   font-size: 14px;
 }
 
+.PortfolioItem-tech .selected {
+  background: #fff200;
+}
+
 .Portfolio-item p {
   margin-bottom: 10px;
 }

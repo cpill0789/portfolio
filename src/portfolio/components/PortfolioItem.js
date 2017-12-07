@@ -9,9 +9,17 @@ class PortfolioItem extends PureComponent {
       return null;
     }
 
+    const technologies = this.props.technologies.map((tech, i) => {
+      const className = this.props.selectedTechnologies.has(tech) ? 'selected' : '';
+
+      return (
+        <span key={tech} className="PortfolioItem-tech"><span className={className}>{tech}</span>{ i < this.props.technologies.length - 1 ? ', ' : '' }</span>
+      );
+    });
+
     return (
       <p>
-        <span className="Portfolio-label">TECHNOLOGIES:</span> {this.props.technologies.join(', ')}
+        <span className="Portfolio-label">TECHNOLOGIES:</span> {technologies}
       </p>
     );
   }
