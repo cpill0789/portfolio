@@ -2,14 +2,35 @@
   font-size: 18px;
 }
 
+.Portfolio-navigation {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.Portfolio-navigation > div {
+  margin-top: 20px;
+}
+
 .Portfolio-intro {
-  padding:10px 30px;
+  max-width: 500px;
+  padding: 0 20px;
+}
+
+.Portfolio-navigation h4 {
+  text-align: center;
+}
+
+.Portfolio-index {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
 }
 
 .Portfolio-technology-filters {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 300;
-  padding:10px;
-  text-align: center;
+  max-width: 400px;
+  padding: 0 20px;
 }

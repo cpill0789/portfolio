@@ -6,6 +6,7 @@ import PortfolioItem from './components/PortfolioItem';
 import PhoneFrame from './components/PhoneFrame';
 import SiteScreen from './components/SiteScreen';
 import FilterToggle from './components/FilterToggle';
+import IndexEntry from './components/IndexEntry';
 
 import messengerVideo from './assets/messenger.m4v';
 import messengerPoster from './assets/messenger-poster.jpg';
@@ -25,6 +26,7 @@ const messengerProps = {
           storage. In the demo video I'm showing a conversation with a very simple chat bot that
           I created in order to quickly test out functionality.`,
   key: 'messenger',
+  id: 'messenger',
 };
 
 const widgetsProps = {
@@ -35,6 +37,7 @@ const widgetsProps = {
           Feed embedded on ATPWorldTour.com (shown), Slipknot1.com
           Sweepstakes entry form embedded on mlb.com and liverpoolfc.com`,
   key: 'widgets',
+  id: 'widgets',
 };
 
 const tennisProps = {
@@ -43,6 +46,7 @@ const tennisProps = {
   technologies: ['React Web', 'Server-Sent Events', 'Local Storage'],
   description: 'Live tennis scores for multiple tournaments',
   key: 'tennis',
+  id: 'tennis',
 };
 
 const technologies = new Set();
@@ -95,16 +99,27 @@ class Portfolio extends PureComponent {
   render() {
     return (
       <div className="Portfolio">
-        <p className="Portfolio-intro">This is a portfolio of some recent full-stack
-          projects that I&apos;ve worked on both at the social networking company Vixlet, LLC (<a href="https://github.com/cpillzvix">contribution history</a>)
-          and as a freelance developer. On all of these projects I was the
-          lead architect, primary contributor, or the sole developer.
-          This portfolio (<a href="https://github.com/cpill0789/portfolio">view source on github</a>) was written in React.js and uses flex-box for layouts.
-          I bootstrapped the project with the create-react-app utility from Facebook.
-        </p>
-        <div className="Portfolio-technology-filters">
-          <span className="Portfolio-label">Filter by Technology:</span>
-          { this.getTechList() }
+        <div className="Portfolio-navigation">
+          <div className="Portfolio-intro">
+            <p>This is a portfolio of some recent full-stack
+              projects that I&apos;ve worked on both at the social networking company Vixlet, LLC
+              (<a href="https://github.com/cpillzvix">contribution history</a>) and as a freelance developer.
+              On all of these projects I was the lead architect, primary contributor, or the sole developer.
+              This portfolio (<a href="https://github.com/cpill0789/portfolio">source code</a>)
+              was written in React.js and uses CSS flexbox for layouts. I bootstrapped the project with the
+              create-react-app utility from Facebook.
+            </p>
+          </div>
+          <div className="Portfolio-index">
+            <h4>Projects</h4>
+            <IndexEntry config={messengerProps} selectedTechnologies={this.state.selectedTechnologies} />
+            <IndexEntry config={widgetsProps} selectedTechnologies={this.state.selectedTechnologies} />
+            <IndexEntry config={tennisProps} selectedTechnologies={this.state.selectedTechnologies} />
+          </div>
+          <div className="Portfolio-technology-filters">
+            <h4>Filter by Technology</h4>
+            { this.getTechList() }
+          </div>
         </div>
         <PortfolioItem {...messengerProps} selectedTechnologies={this.state.selectedTechnologies}>
           <PhoneFrame src={messengerVideo} poster={messengerPoster} />

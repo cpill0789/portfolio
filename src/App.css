@@ -1,3 +1,5 @@
+/* https://coolors.co/306857-2e9769-d0cb3d-f19f41-f14f41 */
+
 body {
   font-family: "adobe-garamond-pro", serif;
   line-height: 1.25;
@@ -9,26 +11,7 @@ body {
   box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #333;
-  padding: 20px;
-  color: white;
-  margin-bottom: 5px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.App-header div {
-  margin:10px;
-}
-
-.logos a {
-  padding: 5px;
-}
-
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -47,4 +30,38 @@ h3 {
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #2E9769;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #306857;
+}
+
+.App-header {
+  background-color: #306857;
+  padding: 20px;
+  color: white;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.App-header div {
+  margin:10px;
+}
+
+.logos a {
+  padding: 5px;
 }

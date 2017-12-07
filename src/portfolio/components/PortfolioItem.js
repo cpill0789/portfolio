@@ -33,6 +33,7 @@ class PortfolioItem extends PureComponent {
       technologies,
       additional,
       children,
+      id,
     } = this.props;
 
     let showItem = true;
@@ -49,7 +50,7 @@ class PortfolioItem extends PureComponent {
     return (
       <div className={`Portfolio-item${showItem ? '' : ' hidden'}`}>
         <div className="Portfolio-item-left">
-          <h3>{title}</h3>
+          <h3 className={`${id}-title`}>{title}</h3>
           {this.getTechnologies()}
           <p><span className="Portfolio-label">ROLE:</span> {role}</p>
           <p><span className="Portfolio-label">DESCRIPTION:</span> {description}</p>
@@ -65,6 +66,7 @@ class PortfolioItem extends PureComponent {
 
 PortfolioItem.propTypes = {
   children: PropTypes.node.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

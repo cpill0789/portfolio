@@ -1,0 +1,11 @@
+.IndexEntry {
+  cursor: pointer;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  padding: 5px;
+}
+
+.IndexEntry.hidden {
+  opacity: 0;
+}
