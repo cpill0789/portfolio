@@ -11,24 +11,44 @@ class PortfolioItem extends PureComponent {
 
     return (
       <p>
-        <span className="Portfolio-label">TECHNOLOGIES:</span>
-        {this.props.technologies.map(tech => <div className="Portfolio-technology">{tech}</div>)}
+        <span className="Portfolio-label">TECHNOLOGIES:</span> {this.props.technologies.join(', ')}
       </p>
     );
   }
 
   render() {
+    const {
+      title,
+      role,
+      description,
+      selectedTechnologies,
+      technologies,
+      additional,
+      children,
+    } = this.props;
+
+    let showItem = true;
+
+    if (selectedTechnologies.size > 0) {
+      showItem = false;
+      technologies.forEach((tech) => {
+        if (selectedTechnologies.has(tech)) {
+          showItem = true;
+        }
+      });
+    }
+
     return (
-      <div className="Portfolio-item">
+      <div className={`Portfolio-item${showItem ? '' : ' hidden'}`}>
         <div className="Portfolio-item-left">
-          <h3>{this.props.title}</h3>
-          <p><span className="Portfolio-label">ROLE:</span> {this.props.role}</p>
+          <h3>{title}</h3>
           {this.getTechnologies()}
-          <p><span className="Portfolio-label">DESCRIPTION:</span> {this.props.description}</p>
-          {this.props.additional && <p>{this.props.additional}</p>}
+          <p><span className="Portfolio-label">ROLE:</span> {role}</p>
+          <p><span className="Portfolio-label">DESCRIPTION:</span> {description}</p>
+          {additional && <p>{additional}</p>}
         </div>
         <div className="Portfolio-item-right">
-          {this.props.children}
+          {children}
         </div>
       </div>
     );
@@ -42,6 +62,7 @@ PortfolioItem.propTypes = {
   description: PropTypes.string.isRequired,
   additional: PropTypes.string,
   technologies: PropTypes.arrayOf(PropTypes.string),
+  selectedTechnologies: PropTypes.object.isRequired,
 };
 
 PortfolioItem.defaultProps = {

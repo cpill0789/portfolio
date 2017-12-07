@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
 
+import './Portfolio.css';
+
 import PortfolioItem from './components/PortfolioItem';
 import PhoneFrame from './components/PhoneFrame';
 import SiteScreen from './components/SiteScreen';
+import FilterToggle from './components/FilterToggle';
 
 import messengerVideo from './assets/messenger.m4v';
 import image from './assets/ATPWorldTour.jpg';
@@ -24,23 +27,80 @@ const messengerProps = {
 const widgetsProps = {
   title: 'Vixlet Embeddable Widgets',
   role: 'Architect/Front-end Developer',
-  technologies: ['Node.js', 'React', 'PostMessage'],
+  technologies: ['Node.js', 'React Web', 'PostMessage'],
   description: `Embeddable feeds, login/signup forms, sweepstakes entry forms.
           Feed embedded on ATPWorldTour.com (shown), Slipknot1.com
           Sweepstakes entry form embedded on mlb.com and liverpoolfc.com`,
   key: 'widgets',
 };
 
+const technologies = new Set();
+
+messengerProps.technologies.forEach(tech => technologies.add(tech));
+widgetsProps.technologies.forEach(tech => technologies.add(tech));
+
+const technologiesArray = Array.from(technologies);
+
+technologiesArray.sort();
+
 class Portfolio extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedTechnologies: new Set(),
+    };
+
+    this.handleFilterClick = this.handleFilterClick.bind(this);
+  }
+
+  getTechList() {
+    return technologiesArray.map((item) => {
+      const selected = this.state.selectedTechnologies.has(item);
+      return (
+        <FilterToggle
+          key={item}
+          selected={selected}
+          onClick={this.handleFilterClick}
+          name={item}
+        />
+      );
+    });
+  }
+
+  handleFilterClick(tech) {
+    this.setState((prevState) => {
+      const selectedTechnologies = new Set(prevState.selectedTechnologies);
+      if (selectedTechnologies.has(tech)) {
+        selectedTechnologies.delete(tech);
+      } else {
+        selectedTechnologies.add(tech);
+      }
+      return {
+        selectedTechnologies,
+      };
+    });
+  }
+
   render() {
-    return [
-      <PortfolioItem {...messengerProps}>
-        <PhoneFrame src={messengerVideo} />
-      </PortfolioItem>,
-      <PortfolioItem {...widgetsProps}>
-        <SiteScreen image={image} mask={imageMask} />
-      </PortfolioItem>,
-    ];
+    return (
+      <div className="Portfolio">
+        <p className="Portfolio-intro">This is a portfolio of some recent full-stack
+          projects that I&apos;ve worked on both at the social networking company Vixlet, LLC (<a href="https://github.com/cpillzvix">contribution history</a>)
+          and as a freelance developer. On all of these projects I was the lead architect, primary contributor, or the sole developer.
+          This portfolio was written in React.js and uses flex-box for layouts. I bootstrapped the project with the create-react-app utility from Facebook. <a href="https://github.com/cpill0789/portfolio">View source on github</a>.
+        </p>
+        <div className="Portfolio-technology-filters">
+          <span>Filter by Technology:</span>
+          { this.getTechList() }
+        </div>
+        <PortfolioItem {...messengerProps} selectedTechnologies={this.state.selectedTechnologies}>
+          <PhoneFrame src={messengerVideo} />
+        </PortfolioItem>
+        <PortfolioItem {...widgetsProps} selectedTechnologies={this.state.selectedTechnologies}>
+          <SiteScreen image={image} mask={imageMask} />
+        </PortfolioItem>
+      </div>
+    );
   }
 }
 
