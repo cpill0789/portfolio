@@ -1,6 +1,8 @@
 .SiteScreen {
   position: relative;
   max-width: 768px;
+  cursor: pointer;
+  padding: 0 10px;
 }
 
 .SiteScreen-image {
@@ -18,6 +20,6 @@
   transition-duration: 0.5s;
 }
 
-.SiteScreen-mask:hover {
-  opacity: 0.75;
+.SiteScreen-mask.show {
+  opacity: 0.65;
 }
