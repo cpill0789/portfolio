@@ -1,3 +1,5 @@
+/* global window */
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
@@ -33,6 +35,10 @@ class PhoneFrame extends PureComponent {
     if (this.video.paused) {
       this.video.play();
       this.setState(() => ({ showOverlay: false }));
+      window.gtag('event', 'video_play', {
+        video_title: this.props.title,
+        event_category: 'engagement',
+      });
     } else {
       this.video.pause();
       this.setState(() => ({ showOverlay: true }));
@@ -67,6 +73,7 @@ class PhoneFrame extends PureComponent {
 }
 
 PhoneFrame.propTypes = {
+  title: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
 };

@@ -33,6 +33,10 @@ class SiteGridItem extends PureComponent {
     }
 
     window.open(this.props.link, this.props.title, `menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,left=${left},top=${top},width=${width},height=${height}`);
+    window.gtag('event', 'site_click', {
+      site_title: this.props.title,
+      event_category: 'engagement',
+    });
   }
 
   render() {
