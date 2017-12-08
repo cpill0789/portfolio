@@ -3,7 +3,11 @@
   opacity: 1;
   transition-property: opacity;
   transition-duration: 0.25s;
-  padding: 5px;
+  padding-bottom: 5px;
+}
+
+.IndexEntry:hover {
+  color: #2E9769;
 }
 
 .IndexEntry.hidden {

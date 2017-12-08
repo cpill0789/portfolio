@@ -5,6 +5,7 @@ import './Portfolio.css';
 import PortfolioItem from './components/PortfolioItem';
 import PhoneFrame from './components/PhoneFrame';
 import SiteScreen from './components/SiteScreen';
+import SiteGrid from './components/SiteGrid';
 import FilterToggle from './components/FilterToggle';
 import IndexEntry from './components/IndexEntry';
 
@@ -68,7 +69,7 @@ const items = new Map([
   [
     'sites',
     {
-      title: 'Concrete5 Web Sites',
+      title: 'Concrete5 Sites',
       role: 'Developer/Designer',
       technologies: ['Concrete5', 'LAMP'],
       description: 'As a freelancer, I\'ve designed and developed several sites with the Concrete5 CMS. All of these sites include custom functionality implemented within the Concrete5 framework.',
@@ -86,6 +87,29 @@ items.forEach(item => item.technologies.forEach(tech => technologies.add(tech)))
 const technologiesArray = Array.from(technologies);
 
 technologiesArray.sort();
+
+const exampleSites = [
+  {
+    title: 'TanyaOrellana',
+    link: 'https://tanyaorellana.com/',
+    image: siteTanya,
+  },
+  {
+    title: 'WHRB',
+    link: 'https://www.whrb.org/',
+    image: siteWHRB,
+  },
+  {
+    title: 'Caio Afiune',
+    link: 'https://www.caioafiune.com/',
+    image: siteCaio,
+  },
+  {
+    title: 'TLC',
+    link: 'https://trinitystatecollege.org/',
+    image: siteTLC,
+  },
+];
 
 class Portfolio extends PureComponent {
   constructor(props) {
@@ -128,18 +152,18 @@ class Portfolio extends PureComponent {
   render() {
     return (
       <div className="Portfolio">
+        <div className="Portfolio-intro">
+          <p>
+            Here are some selected full-stack and front-end projects completed
+            while working at the social networking company Vixlet, LLC
+            (<a href="https://github.com/cpillzvix">view contribution history</a>) and as a
+            freelance developer. I was lead architect, primary contributor, or sole
+            developer on all projects listed. This portfolio
+            (<a href="https://github.com/cpill0789/portfolio">source code</a>) was written
+            in React.js and uses CSS flexbox for layouts.
+          </p>
+        </div>
         <div className="Portfolio-navigation">
-          <div className="Portfolio-intro">
-            <p>
-              This portfolio contains selected full-stack and front-end projects completed
-              while working at the social networking company Vixlet, LLC
-              (<a href="https://github.com/cpillzvix">contribution history</a>) and as a
-              freelance developer. I was lead architect, primary contributor, or sole
-              developer on all projects listed. This portfolio
-              (<a href="https://github.com/cpill0789/portfolio">source code</a>) was written
-              in React.js and uses CSS flexbox for layouts.
-            </p>
-          </div>
           <div className="Portfolio-index">
             <h4>Projects</h4>
             { itemKeys.map(key => <IndexEntry config={items.get(key)} key={key} id={key} selectedTechnologies={this.state.selectedTechnologies} />) }
@@ -162,12 +186,7 @@ class Portfolio extends PureComponent {
           <PhoneFrame src={whrbVideo} poster={whrbPoster} />
         </PortfolioItem>
         <PortfolioItem {...items.get('sites')} id="sites" selectedTechnologies={this.state.selectedTechnologies}>
-          <div className="Portfolio-photo-grid">
-            <a href="https://tanyaorellana.com"><img src={siteTanya} alt="" /></a>
-            <a href="https://www.whrb.org"><img src={siteWHRB} alt="" /></a>
-            <a href="https://caioafiune.com"><img src={siteCaio} alt="" /></a>
-            <a href="https://www.trinitystatecollege.org"><img src={siteTLC} alt="" /></a>
-          </div>
+          <SiteGrid sites={exampleSites} />
         </PortfolioItem>
       </div>
     );

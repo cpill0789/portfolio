@@ -53,13 +53,13 @@ a:hover {
   color: white;
   margin-bottom: 5px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .App-header div {
-  margin:10px;
+  margin:10px 20px;
 }
 
 .logos a {

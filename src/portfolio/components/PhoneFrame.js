@@ -38,7 +38,6 @@ class PhoneFrame extends PureComponent {
 
   bindVideoRef(video) {
     this.video = video;
-    this.video.loop = true;
   }
 
   render() {
