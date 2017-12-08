@@ -70,7 +70,7 @@ PortfolioItem.propTypes = {
   title: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  additional: PropTypes.string,
+  additional: PropTypes.node,
   technologies: PropTypes.arrayOf(PropTypes.string),
   selectedTechnologies: PropTypes.object.isRequired,
 };

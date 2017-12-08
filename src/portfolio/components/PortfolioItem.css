@@ -1,6 +1,6 @@
 .Portfolio-item {
   margin: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 100px;
   display: flex;
   justify-content: space-around;
 }
@@ -11,6 +11,10 @@
 
 .Portfolio-item-left {
   max-width: 600px;
+}
+
+.Portfolio-item-left h3 {
+  margin-bottom: 20px;
 }
 
 .Portfolio-label {

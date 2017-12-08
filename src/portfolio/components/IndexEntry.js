@@ -11,7 +11,7 @@ class IndexEntry extends PureComponent {
   }
 
   handleClick() {
-    const selector = `.${this.props.config.id}-title`;
+    const selector = `.${this.props.id}-title`;
 
     scrollToElement(selector, {
       offset: -10,
@@ -46,6 +46,7 @@ class IndexEntry extends PureComponent {
 
 IndexEntry.propTypes = {
   config: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
   selectedTechnologies: PropTypes.object.isRequired,
 };
 

@@ -10,49 +10,78 @@ import IndexEntry from './components/IndexEntry';
 
 import messengerVideo from './assets/messenger.m4v';
 import messengerPoster from './assets/messenger-poster.jpg';
+
 import tennisVideo from './assets/tennis.m4v';
 import tennisPoster from './assets/tennis-poster.jpg';
-import image from './assets/ATPWorldTour.jpg';
-import imageMask from './assets/ATPWorldTourMask.png';
 
-const messengerProps = {
-  title: 'Vixlet Messenger',
-  role: 'API and Front-end Architect/Lead Developer',
-  technologies: ['Cassandra', 'Node.js', 'React Native', 'Redux', 'WebSockets'],
-  description: `Architected API and React Native implementation for messaging functionality
-          on the Vixlet Platform. The messaging views shown are React Native views embedded within an existing
-          iOS Swift application. I led both the front-end and back-end development for the
-          feature. I wrote API in Node using Restify, WebSockets, and Cassandra for highly-scalable
-          storage. In the demo video I'm showing a conversation with a very simple chat bot that
-          I created in order to quickly test out functionality.`,
-  key: 'messenger',
-  id: 'messenger',
-};
+import atpImage from './assets/ATPWorldTour.jpg';
+import atpImageMask from './assets/ATPWorldTourMask.png';
 
-const widgetsProps = {
-  title: 'Vixlet Embeddable Widgets',
-  role: 'Architect/Front-end Developer',
-  technologies: ['Node.js', 'PostMessage', 'React Web'],
-  description: `Embeddable feeds, login/signup forms, sweepstakes entry forms.
-          Feed embedded on ATPWorldTour.com (shown), Slipknot1.com
-          Sweepstakes entry form embedded on mlb.com and liverpoolfc.com`,
-  key: 'widgets',
-  id: 'widgets',
-};
+import whrbVideo from './assets/whrb.m4v';
+import whrbPoster from './assets/whrb-poster.jpg';
 
-const tennisProps = {
-  title: 'Live Tennis Score Views',
-  role: 'Front-end Developer/API Contributor',
-  technologies: ['React Web', 'Server-Sent Events', 'Local Storage'],
-  description: 'Live tennis scores for multiple tournaments',
-  key: 'tennis',
-  id: 'tennis',
-};
+import siteTanya from './assets/site-tanya.png';
+import siteCaio from './assets/site-caio.png';
+import siteWHRB from './assets/site-whrb.png';
+import siteTLC from './assets/site-tlc.png';
+
+const items = new Map([
+  [
+    'messenger',
+    {
+      title: 'Vixlet Messenger',
+      role: 'API and Front-end Lead Developer',
+      technologies: ['Cassandra', 'Node.js', 'React Native', 'Redis', 'Redux', 'WebSockets'],
+      description: 'Architected API and client code for messaging functionality on the Vixlet Platform. The client is written in React Native with a redux data store and integrated into the existing Vixlet iOS and Android apps. The API is backed by Apache Cassandra with a REST API written with the Restify framework on Node.js. Real-time communication is powered by WebSockets with Redis Pub/Sub used to coordinate communication between servers.',
+      additional: 'The video shows the messaging application in Vixlet’s internal company app. The “vixbot” user is a chat bot that replies with a random quote, which I also wrote. The React Native code is built to be themed for multiple Vixlet worlds (MLB Fans, Slipknot OT9, LFC Xtra, MyATP, and more) via dynamic configuration.',
+    },
+  ],
+  [
+    'widgets',
+    {
+      title: 'Vixlet Embeddable Widgets',
+      role: 'Architect and Front-end Developer',
+      technologies: ['Node.js', 'PostMessage', 'React Web'],
+      description: 'In the fall of 2016, I led a complete refactor of the Vixlet Widgets SDK, which embeds parts of the Vixlet social platform onto third-party sites. The refactor implemented the PostMessage API for cross-domain iframe communication, isomorphic React rendering to provide rich HTML from server,  and dynamic styling through CSS-in-JS.',
+      additional: 'The screenshot shows the feed and authentication widgets embedded on the ATP World Tour homepage. Widgets were also embedded on the official websites for Liverpool FC, MLB, and Slipknot.',
+    },
+  ],
+  [
+    'tennis',
+    {
+      title: 'Tennis Tournament Web Views',
+      role: 'Full-Stack Developer',
+      technologies: ['Node.js', 'React Web', 'Server-Sent Events'],
+      description: 'A small cross-functional team at Vixlet was organized to create a proof-of-concept for real-time tennis scores and event information embedded in the tennis-focused Vixlet apps. The live scores were created as React.js web views and served by a Node server. Live score data was provided by the ATP XML API and sent to clients in real-time using server-sent events.',
+      additional: 'The feature was written from start to finish in six weeks and deployed live for the 2017 Garanti Koza Sofia Open, which is shown in the video. The feature was also deployed for the 2017 ATP Istanbul Open and WTA Istanbul Cup.',
+    },
+  ],
+  [
+    'whrb',
+    {
+      title: 'WHRB Radio App',
+      role: 'Developer/Designer',
+      technologies: ['Fastlane', 'Icecast', 'Node.js', 'React Native', 'WebSockets'],
+      description: 'In the summer of 2017, I built a live stream and playlist app for Harvard Radio with React Native. I designed, developed, and released the app. The live stream is an HE-AAC stream served by an Icecast server. Playlist data is provided through a Node.js API, which also serves data for the whrb.org homepage.',
+    },
+  ],
+  [
+    'sites',
+    {
+      title: 'Concrete5 Web Sites',
+      role: 'Developer/Designer',
+      technologies: ['Concrete5', 'LAMP'],
+      description: 'As a freelancer, I\'ve designed and developed several sites with the Concrete5 CMS. All of these sites include custom functionality implemented within the Concrete5 framework.',
+    },
+  ],
+]);
+
+const itemKeys = Array.from(items.keys());
 
 const technologies = new Set();
 
-messengerProps.technologies.forEach(tech => technologies.add(tech));
-widgetsProps.technologies.forEach(tech => technologies.add(tech));
+// Add all technologies for all items to the technologies Set.
+items.forEach(item => item.technologies.forEach(tech => technologies.add(tech)));
 
 const technologiesArray = Array.from(technologies);
 
@@ -101,34 +130,44 @@ class Portfolio extends PureComponent {
       <div className="Portfolio">
         <div className="Portfolio-navigation">
           <div className="Portfolio-intro">
-            <p>This is a portfolio of some recent full-stack
-              projects that I&apos;ve worked on both at the social networking company Vixlet, LLC
-              (<a href="https://github.com/cpillzvix">contribution history</a>) and as a freelance developer.
-              On all of these projects I was the lead architect, primary contributor, or the sole developer.
-              This portfolio (<a href="https://github.com/cpill0789/portfolio">source code</a>)
-              was written in React.js and uses CSS flexbox for layouts. I bootstrapped the project with the
-              create-react-app utility from Facebook.
+            <p>
+              This portfolio contains selected full-stack and front-end projects completed
+              while working at the social networking company Vixlet, LLC
+              (<a href="https://github.com/cpillzvix">contribution history</a>) and as a
+              freelance developer. I was lead architect, primary contributor, or sole
+              developer on all projects listed. This portfolio
+              (<a href="https://github.com/cpill0789/portfolio">source code</a>) was written
+              in React.js and uses CSS flexbox for layouts.
             </p>
           </div>
           <div className="Portfolio-index">
             <h4>Projects</h4>
-            <IndexEntry config={messengerProps} selectedTechnologies={this.state.selectedTechnologies} />
-            <IndexEntry config={widgetsProps} selectedTechnologies={this.state.selectedTechnologies} />
-            <IndexEntry config={tennisProps} selectedTechnologies={this.state.selectedTechnologies} />
+            { itemKeys.map(key => <IndexEntry config={items.get(key)} key={key} id={key} selectedTechnologies={this.state.selectedTechnologies} />) }
           </div>
           <div className="Portfolio-technology-filters">
             <h4>Filter by Technology</h4>
             { this.getTechList() }
           </div>
         </div>
-        <PortfolioItem {...messengerProps} selectedTechnologies={this.state.selectedTechnologies}>
+        <PortfolioItem {...items.get('messenger')} id="messenger" selectedTechnologies={this.state.selectedTechnologies}>
           <PhoneFrame src={messengerVideo} poster={messengerPoster} />
         </PortfolioItem>
-        <PortfolioItem {...widgetsProps} selectedTechnologies={this.state.selectedTechnologies}>
-          <SiteScreen image={image} mask={imageMask} />
+        <PortfolioItem {...items.get('widgets')} id="widgets" selectedTechnologies={this.state.selectedTechnologies}>
+          <SiteScreen image={atpImage} mask={atpImageMask} />
         </PortfolioItem>
-        <PortfolioItem {...tennisProps} selectedTechnologies={this.state.selectedTechnologies}>
+        <PortfolioItem {...items.get('tennis')} id="tennis" selectedTechnologies={this.state.selectedTechnologies}>
           <PhoneFrame src={tennisVideo} poster={tennisPoster} />
+        </PortfolioItem>
+        <PortfolioItem {...items.get('whrb')} id="whrb" selectedTechnologies={this.state.selectedTechnologies} additional={<a href="https://itunes.apple.com/us/app/whrb/id1239241850?mt=8" className="appStore" />}>
+          <PhoneFrame src={whrbVideo} poster={whrbPoster} />
+        </PortfolioItem>
+        <PortfolioItem {...items.get('sites')} id="sites" selectedTechnologies={this.state.selectedTechnologies}>
+          <div className="Portfolio-photo-grid">
+            <a href="https://tanyaorellana.com"><img src={siteTanya} alt="" /></a>
+            <a href="https://www.whrb.org"><img src={siteWHRB} alt="" /></a>
+            <a href="https://caioafiune.com"><img src={siteCaio} alt="" /></a>
+            <a href="https://www.trinitystatecollege.org"><img src={siteTLC} alt="" /></a>
+          </div>
         </PortfolioItem>
       </div>
     );
